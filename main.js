@@ -70,10 +70,25 @@ let rgb = []
 window.addEventListener("mousedown", () => {mouseDown = true})
 window.addEventListener("mouseup", () => {mouseDown = false})
 
+window.addEventListener("touchmove", (e) => {
+
+    rgb = [
+      Math.floor(Math.random() * 255),
+      Math.floor(Math.random() * 255),
+      200,
+    ]
+
+    let newColor = new THREE.Color(`rgb(${rgb.join(",")})`)
+    gsap.to(mesh.material.color, {
+      r: newColor.r,
+      g: newColor.g,
+      b: newColor.b,
+    })
+})
+
+
 window.addEventListener("mousemove", (e) => {
-  console.log("asdasd")
   if (mouseDown) {
-    console.log(mouseDown)
     rgb = [
       Math.round((e.pageX / sizes.width) * 255),
       Math.round((e.pageY / sizes.height) * 255),
